@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+.vscode/
+.env
+
+# commit message rule
+commitlint.config.js
+/.husky
