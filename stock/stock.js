@@ -693,7 +693,7 @@ class Stock{
               chip.foreignInvestorsBS = Math.round(item[4].replace(/,/g, '') / 1000);
               chip.investmentTrustBS = Math.round(item[10].replace(/,/g, '') / 1000);
               chip.dealerBS = Math.round(item[11].replace(/,/g, '') / 1000);
-              chip.institutionalInvestorsBS = Math.round(item[18].replace(/,/g, '') / 1000);
+              chip.institutionalInvestorsBS = chip.foreignInvestorsBS + chip.investmentTrustBS + chip.dealerBS;
               chip.date = date;
               return chip;
             })
