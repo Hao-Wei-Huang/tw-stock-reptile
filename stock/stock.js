@@ -6,10 +6,10 @@ const Database = require('../connections/database');
 
 class Stock{
   constructor(){
-    this.company = DB_COMPANY_TABLE;
-    this.techTable = DB_TECH_TABLE;
-    this.chipTable = DB_CHIP_TABLE;
-    this.fundamentTable = DB_FUNDAMENT_TABLE;
+    this.company = process.env.DB_COMPANY_TABLE;
+    this.techTable = process.env.DB_TECH_TABLE;
+    this.chipTable = process.env.DB_CHIP_TABLE;
+    this.fundamentTable = process.env.DB_FUNDAMENT_TABLE;
     this.initDayCount = 35;
     this.initMonthCount = 6;
     this.initSeasonCount = 9;
@@ -1201,23 +1201,24 @@ class Stock{
     date = Number(date.substring(4));
     let season;
   
-    // {date: '0331',season:4},{date: '0515',season: 1},{date: '0814',season: 2},{date: '1114',season:3}
-    if(date < 331){
-      season = 3;
-      year--;
-    }
-    else if(date < 515){
+    // {date: '0331',season:4},{date: '0530',season: 1},{date: '0831',season: 2},{date: '1129',season:3}
+    // plus 7 days due to holiday
+    if(date < 407){
       season = 4;
       year--;
     }
-    else if(date < 814){
+    else if(date < 606){
       season = 1;
+      year--;
     }
-    else if(date < 1114){
+    else if(date < 907){
       season = 2;
     }
-    else{
+    else if(date < 1206){
       season = 3;
+    }
+    else{
+      season = 4;
     }
     return [year, season];
   }
